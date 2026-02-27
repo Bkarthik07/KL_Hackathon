@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
+import Register from './components/Register';
 import PatientDashboard from './components/PatientDashboard';
+import PatientDetail from './components/PatientDetail';
 import DoctorDashboard from './components/DoctorDashboard';
 import HospitalDashboard from './components/HospitalDashboard';
 
@@ -22,7 +24,9 @@ function App() {
           ) : <Navigate to="/login" />
         } />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/patient" element={token && role === 'patient' ? <PatientDashboard /> : <Navigate to="/login" />} />
+        <Route path="/patient/:patientId" element={token && (role === 'doctor' || role === 'admin') ? <PatientDetail /> : <Navigate to="/login" />} />
         <Route path="/doctor" element={token && role === 'doctor' ? <DoctorDashboard /> : <Navigate to="/login" />} />
         <Route path="/hospital" element={token && role === 'admin' ? <HospitalDashboard /> : <Navigate to="/login" />} />
         <Route path="*" element={<Navigate to="/login" />} />
