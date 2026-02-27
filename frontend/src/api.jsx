@@ -21,8 +21,14 @@ API.interceptors.response.use(
 );
 
 export const login = (credentials) => API.post('/login', credentials);
+export const register = (data) => API.post('/register', data);
 export const getPatients = () => API.get('/patients');
 export const getAlerts = () => API.get('/alerts');
 export const acknowledgeAlert = (id) => API.post(`/alerts/${id}/acknowledge`);
 export const getPatientConversations = (id) => API.get(`/patients/${id}/conversations`);
 export const getPainTrend = (id) => API.get(`/patients/${id}/pain-trend`);
+
+// Hospital Admin APIs
+export const getHospitalStats = () => API.get('/hospital/stats');
+export const getHospitalAlerts = () => API.get('/hospital/alerts-summary');
+export const getHospitalPatients = () => API.get('/hospital/patient-list');

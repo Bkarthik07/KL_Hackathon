@@ -18,3 +18,11 @@ def create_app():
 
     app.teardown_appcontext(close_db)
     return app
+
+
+# expose an app instance for flask CLI or WSGI servers
+app = create_app()
+
+if __name__ == '__main__':
+    # allow running directly with `python app.py`
+    app.run(debug=True)
